@@ -18,12 +18,23 @@ public class Book {
     private String author;
     private Integer yearDate;
 
+    private Integer price;
+
     public Book(){}
 
-    public Book(String name, String author, Integer year){
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public Book(String name, String author, Integer year, Integer price){
         this.name = name;
         this.author = author;
         this.yearDate = year;
+        this.price = price;
     }
 
     public Integer getId() {

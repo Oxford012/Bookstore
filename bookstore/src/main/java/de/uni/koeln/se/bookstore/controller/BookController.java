@@ -50,4 +50,36 @@ public class BookController {
         }
     }
 
+    @GetMapping("/oldestBook")
+    public ResponseEntity<Book> getOldestBook(){
+        List<Book> books = new ArrayList<Book>();
+        books = bookSer.findBooks();
+        if(books.isEmpty()){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        Book oldestBook = books.get(0);
+        for(Book book : books){
+            if(book.getYearDate() < oldestBook.getYearDate()){
+                oldestBook = book;
+            }
+        }
+        return new ResponseEntity<>(oldestBook, HttpStatus.OK);
+    }
+
+    @GetMapping("/newestBook")
+    public ResponseEntity<Book> getNewestBook(){
+        List<Book> books = new ArrayList<Book>();
+        books = bookSer.findBooks();
+        if(books.isEmpty()){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        Book oldestBook = books.get(0);
+        for(Book book : books){
+            if(book.getYearDate() > oldestBook.getYearDate()){
+                oldestBook = book;
+            }
+        }
+        return new ResponseEntity<>(oldestBook, HttpStatus.OK);
+    }
+
 }
